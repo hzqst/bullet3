@@ -145,6 +145,12 @@ IF(MSVC)
 		add_definitions(/arch:AVX)
 	ENDIF()
 
+	option(USE_MSVC_AVX2 "Compile your program with AVX2 instructions"  OFF)
+
+	IF(USE_MSVC_AVX2)
+		add_definitions(/arch:AVX2)
+	ENDIF()
+ 
 	OPTION(USE_MSVC_FAST_FLOATINGPOINT "Use MSVC /fp:fast option"	ON)
 	IF (USE_MSVC_FAST_FLOATINGPOINT)
 		  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /fp:fast")
