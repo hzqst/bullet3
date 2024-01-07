@@ -23,6 +23,8 @@ ENDIF (NOT CMAKE_BUILD_TYPE)
 SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
 #MESSAGE("CMAKE_CXX_FLAGS_DEBUG="+${CMAKE_CXX_FLAGS_DEBUG})
 
+option(LINK_AGAINST_OLDER_GLIBC "Link against older glibc" OFF)
+
 OPTION(USE_DOUBLE_PRECISION "Use double precision"	OFF)
 SET(CLAMP_VELOCITIES "0" CACHE STRING "Clamp rigid bodies' velocity to this value, if larger than zero. Useful to prevent floating point errors or in general runaway velocities in complex scenarios")
 OPTION(USE_GRAPHICAL_BENCHMARK "Use Graphical Benchmark" ON)
@@ -33,6 +35,11 @@ OPTION(USE_OPENVR "Use OpenVR for virtual reality" OFF)
 OPTION(ENABLE_VHACD "Use VHACD in BulletRobotics and pybullet" ON)
 
 OPTION(BULLET2_MULTITHREADING "Build Bullet 2 libraries with mutex locking around certain operations (required for multi-threading)" OFF)
+
+if (LINK_AGAINST_OLDER_GLIBC)
+    add_compile_options(-include ../../glibc_224/force_link_glibc_2.24.h)
+endif ()
+
 IF (BULLET2_MULTITHREADING)
     OPTION(BULLET2_USE_OPEN_MP_MULTITHREADING "Build Bullet 2 with support for multi-threading with OpenMP (requires a compiler with OpenMP support)" OFF)
     OPTION(BULLET2_USE_TBB_MULTITHREADING "Build Bullet 2 with support for multi-threading with Intel Threading Building Blocks (requires the TBB library to be already installed)" OFF)
