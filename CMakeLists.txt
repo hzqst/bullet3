@@ -24,6 +24,8 @@ SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
 #MESSAGE("CMAKE_CXX_FLAGS_DEBUG="+${CMAKE_CXX_FLAGS_DEBUG})
 
 option(LINK_AGAINST_OLDER_GLIBC "Link against older glibc" OFF)
+option(LINK_AGAINST_OLDER_GLIBC_PATH "Path of older glibc header" "")
+SET(OLDER_GLIBC_PATH "")
 
 OPTION(USE_DOUBLE_PRECISION "Use double precision"	OFF)
 SET(CLAMP_VELOCITIES "0" CACHE STRING "Clamp rigid bodies' velocity to this value, if larger than zero. Useful to prevent floating point errors or in general runaway velocities in complex scenarios")
@@ -37,7 +39,7 @@ OPTION(ENABLE_VHACD "Use VHACD in BulletRobotics and pybullet" ON)
 OPTION(BULLET2_MULTITHREADING "Build Bullet 2 libraries with mutex locking around certain operations (required for multi-threading)" OFF)
 
 if (LINK_AGAINST_OLDER_GLIBC)
-    add_compile_options(-include ../../glibc_224/force_link_glibc_2.24.h)
+    add_compile_options(-include ${OLDER_GLIBC_PATH})
 endif ()
 
 IF (BULLET2_MULTITHREADING)
