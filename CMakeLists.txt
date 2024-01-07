@@ -24,7 +24,8 @@ SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
 #MESSAGE("CMAKE_CXX_FLAGS_DEBUG="+${CMAKE_CXX_FLAGS_DEBUG})
 
 option(LINK_AGAINST_OLDER_GLIBC "Link against older glibc" OFF)
-SET(OLDER_GLIBC_PATH "")
+
+ message(WARNING "OLDER_GLIBC_PATH is ${OLDER_GLIBC_PATH}")
 
 OPTION(USE_DOUBLE_PRECISION "Use double precision"	OFF)
 SET(CLAMP_VELOCITIES "0" CACHE STRING "Clamp rigid bodies' velocity to this value, if larger than zero. Useful to prevent floating point errors or in general runaway velocities in complex scenarios")
