@@ -37,6 +37,8 @@ OPTION(USE_OPENVR "Use OpenVR for virtual reality" OFF)
 OPTION(ENABLE_VHACD "Use VHACD in BulletRobotics and pybullet" ON)
 
 OPTION(BULLET2_MULTITHREADING "Build Bullet 2 libraries with mutex locking around certain operations (required for multi-threading)" OFF)
+OPTION(BUILD_BULLET3_OPENCL "Build Bullet3OpenCL" OFF)
+OPTION(BUILD_BULLET3_SERIALIZE "Build Bullet3Serialize" OFF)
 
 if (LINK_AGAINST_OLDER_GLIBC)
     add_compile_options(-include ${OLDER_GLIBC_PATH})
